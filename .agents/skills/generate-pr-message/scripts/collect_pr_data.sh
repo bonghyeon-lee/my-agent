@@ -6,7 +6,14 @@
 TARGET_BRANCH=$1
 
 if [ -z "$TARGET_BRANCH" ]; then
-  if git rev-parse --verify "yskim-hori/dev" > /dev/null 2>&1; then
+  # Source .env if exists to get DEFAULT_TARGET_BRANCH
+  if [ -f ".agents/.env" ]; then
+    source .agents/.env
+  fi
+
+  if [ -n "$DEFAULT_TARGET_BRANCH" ] && git rev-parse --verify "$DEFAULT_TARGET_BRANCH" > /dev/null 2>&1; then
+    TARGET_BRANCH="$DEFAULT_TARGET_BRANCH"
+  elif git rev-parse --verify "yskim-hori/dev" > /dev/null 2>&1; then
     TARGET_BRANCH="yskim-hori/dev"
   elif git show-ref --verify --quiet refs/heads/main; then
     TARGET_BRANCH="main"

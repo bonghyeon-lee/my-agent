@@ -17,7 +17,7 @@ description: 현재 브랜치를 특정 브랜치로 머지하기 전 코드 리
 
 1. **차이점 확인**:
    `scripts/get_branch_diff.sh [target-branch]` 스크립트를 사용하여 변경 사항을 확인합니다.
-   (예: `./.agents/skills/code-review/scripts/get_branch_diff.sh yskim-hori/dev`)
+   생략 시 `.agents/.env`의 `DEFAULT_TARGET_BRANCH` 값을 사용합니다. (예: `./.agents/skills/code-review/scripts/get_branch_diff.sh main`)
 
 2. **체크리스트 검토**:
    `resources/review_checklist.md`를 열고 변경 사항이 모든 항목을 충족하는지 확인합니다.
